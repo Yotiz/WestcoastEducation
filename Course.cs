@@ -36,15 +36,12 @@ public class Course
     public override string ToString()
     {
         string format = "Klassrum";
-        
         if (IsDistance)
         {
             format = "Distans";
         }
-
         // +1 för att start/slutdagen ska räknas med...
         int days = EndDate.DayNumber - StartDate.DayNumber + 1;
-
         return $"{CourseNumber}: {Title}, {format}, {days} kalenderdagar, " + $"{StartDate:yyyy-MM-dd} till {EndDate:yyyy-MM-dd}";
     }
 }

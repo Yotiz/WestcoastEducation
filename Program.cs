@@ -11,6 +11,7 @@ public class Program
         {
             Console.WriteLine("\n--- Westcoast Education ---");
             Console.WriteLine("1. Lägg till kurs");
+            Console.WriteLine("2. Lista kurser");
             Console.WriteLine("0. Avsluta");
 
             switch (ReadText("Välj: "))
@@ -18,19 +19,23 @@ public class Program
                 case "1": AddCourse(); 
                 break;
 
+                case "2": Course.ListCourses(school.Courses); 
+                break;
+
                 case "0": 
                 return;
 
-                default: Console.WriteLine("Välj 1 eller 0."); 
+                default: Console.WriteLine("Välj 1, 2 eller 0."); 
                 break;
             }
 
+            // paus innan meny...
             Console.WriteLine("\nTryck Enter för att återgå till menyn.");
             Console.ReadLine();
         }
     }
 
-    // skapa och lägg till kurser..
+    // skapa och lägg till kurser...
     static void AddCourse()
     {
         Course course = new Course();
@@ -59,16 +64,13 @@ public class Program
             string? text = Console.ReadLine();
             if (text == null)
             {
-                
                 Environment.Exit(0); // avsluta...
                 return "";
             }
-
             if (!string.IsNullOrWhiteSpace(text)) // kontroll efter tom text...
             {
                 return text.Trim(); // ta bort mellanslag..
             }
-
             Console.WriteLine("Fältet får inte vara tomt.");
         }
     }
@@ -99,7 +101,6 @@ public class Program
             {
                 return date;
             }
-
             Console.WriteLine("Skriv ett giltigt datum som ÅÅÅÅ-MM-DD.");
         }
     }
