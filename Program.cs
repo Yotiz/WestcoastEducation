@@ -11,7 +11,8 @@ public class Program
         {
             Console.WriteLine("\n--- Westcoast Education ---");
             Console.WriteLine("1. Lägg till kurs");
-            Console.WriteLine("2. Lista kurser");
+            Console.WriteLine("2. Lägg till studerande");
+            Console.WriteLine("3. Lista kurser");
             Console.WriteLine("0. Avsluta");
 
             switch (ReadText("Välj: "))
@@ -19,13 +20,16 @@ public class Program
                 case "1": AddCourse(); 
                 break;
 
-                case "2": Course.ListCourses(school.Courses); 
+                case "2": AddPerson(new Student()); 
+                break;
+
+                case "3": Course.ListCourses(school.Courses); 
                 break;
 
                 case "0": 
                 return;
 
-                default: Console.WriteLine("Välj 1, 2 eller 0."); 
+                default: Console.WriteLine("Välj 1, 2, 3 eller 0."); 
                 break;
             }
 
@@ -53,6 +57,21 @@ public class Program
         course.IsDistance = ReadYesNo("Är kursen på distans? (j/n): ");
         Course.AddCourse(school.Courses, course);
         Console.WriteLine($"Kurs tillagd: {course}");
+    }
+
+    // ägg till person/student metod, kan återanvändas...
+    static void AddPerson(Person person)
+    {
+        person.FirstName = ReadText("Förnamn: ");
+        person.LastName = ReadText("Efternamn: ");
+        person.Phone = ReadText("Telefon: ");
+        person.PersonalNumber = ReadText("Personnummer: ");
+        person.Address.Street = ReadText("Gatuadress: ");
+        person.Address.PostalCode = ReadText("Postnummer: ");
+        person.Address.City = ReadText("Ort: ");
+
+        school.People.Add(person);
+        Console.WriteLine($"Person tillagd: {person}");
     }
 
     // gemensamma metoder för inmatning...
