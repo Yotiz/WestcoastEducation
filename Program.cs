@@ -13,6 +13,7 @@ public class Program
             Console.WriteLine("1. Lägg till kurs");
             Console.WriteLine("2. Lägg till studerande");
             Console.WriteLine("3. Lista kurser");
+            Console.WriteLine("4. Lista studerande");
             Console.WriteLine("0. Avsluta");
 
             switch (ReadText("Välj: "))
@@ -26,10 +27,13 @@ public class Program
                 case "3": Course.ListCourses(school.Courses); 
                 break;
 
+                case "4": ListStudents(); 
+                break;
+
                 case "0": 
                 return;
 
-                default: Console.WriteLine("Välj 1, 2, 3 eller 0."); 
+                default: Console.WriteLine("Välj 1, 2, 3, 4 eller 0."); 
                 break;
             }
 
@@ -59,7 +63,7 @@ public class Program
         Console.WriteLine($"Kurs tillagd: {course}");
     }
 
-    // ägg till person/student metod, kan återanvändas...
+    // lägg till person/student metod, kan återanvändas...
     static void AddPerson(Person person)
     {
         person.FirstName = ReadText("Förnamn: ");
@@ -72,6 +76,19 @@ public class Program
 
         school.People.Add(person);
         Console.WriteLine($"Person tillagd: {person}");
+    }
+
+    static void ListStudents()
+    {
+        if (school.People.Count == 0)
+        {
+            Console.WriteLine("Inga studerande finns ännu.");
+        }
+        // endast studerande...
+        foreach (Person person in school.People)
+        {
+            Console.WriteLine(person);
+        }
     }
 
     // gemensamma metoder för inmatning...
