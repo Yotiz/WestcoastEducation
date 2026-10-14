@@ -18,7 +18,6 @@ public class Teacher : Person
         ResponsibleCourses.Add(course);
         Console.WriteLine("Kursen har kopplats till personen.");
     }
-
     // beskriver lärare med uppgifter, kunskapsområde och ansvariga kurser...
     public override string ToString()
     {

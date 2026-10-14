@@ -82,6 +82,7 @@ public class Program
         if (person is Teacher teacher)
         {
             teacher.KnowledgeArea = ReadText("Kunskapsområde: ");
+            AssignCourses(teacher);
         }
 
         school.People.Add(person);
@@ -103,6 +104,18 @@ public class Program
         if (!foundStudent)
         {
             Console.WriteLine("Inga studerande finns ännu.");
+        }
+    }
+    static void AssignCourses(Teacher teacher)
+    {
+        // kontroll för kursansvar...
+        foreach (Course course in school.Courses)
+        {
+            Console.WriteLine(course);
+            if (ReadYesNo("Ska personen ansvara för denna kurs? (j/n): "))
+            {
+                teacher.AddCourse(course);
+            }
         }
     }
 
