@@ -13,8 +13,9 @@ public class Program
             Console.WriteLine("1. Lägg till kurs");
             Console.WriteLine("2. Lägg till lärare");
             Console.WriteLine("3. Lägg till studerande");
-            Console.WriteLine("4. Lista kurser");
-            Console.WriteLine("5. Lista studerande");
+            Console.WriteLine("4. Lägg till handledare/utbildningsledare");
+            Console.WriteLine("5. Lista kurser");
+            Console.WriteLine("6. Lista studerande");
             Console.WriteLine("0. Avsluta");
 
             switch (ReadText("Välj: "))
@@ -28,16 +29,19 @@ public class Program
                 case "3": AddPerson(new Student()); 
                 break;
 
-                case "4": Course.ListCourses(school.Courses); 
+                case "4": AddPerson(new EducationLeader()); 
                 break;
 
-                case "5": ListStudents(); 
+                case "5": Course.ListCourses(school.Courses); 
+                break;
+
+                case "6": ListStudents(); 
                 break;
 
                 case "0": 
                 return;
 
-                default: Console.WriteLine("Välj 1, 2, 3, 4, 5 eller 0."); 
+                default: Console.WriteLine("Välj 1, 2, 3, 4, 5, 6 eller 0."); 
                 break;
             }
 
@@ -83,6 +87,11 @@ public class Program
         {
             teacher.KnowledgeArea = ReadText("Kunskapsområde: ");
             AssignCourses(teacher);
+        }
+        // handledare? be dem att ange anställningsdatum...
+        if (person is EducationLeader leader)
+        {
+            leader.EmploymentDate = ReadDate("Anställningsdatum (ÅÅÅÅ-MM-DD): ");
         }
 
         school.People.Add(person);
