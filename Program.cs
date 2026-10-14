@@ -11,9 +11,10 @@ public class Program
         {
             Console.WriteLine("\n--- Westcoast Education ---");
             Console.WriteLine("1. Lägg till kurs");
-            Console.WriteLine("2. Lägg till studerande");
-            Console.WriteLine("3. Lista kurser");
-            Console.WriteLine("4. Lista studerande");
+            Console.WriteLine("2. Lägg till lärare");
+            Console.WriteLine("3. Lägg till studerande");
+            Console.WriteLine("4. Lista kurser");
+            Console.WriteLine("5. Lista studerande");
             Console.WriteLine("0. Avsluta");
 
             switch (ReadText("Välj: "))
@@ -21,19 +22,22 @@ public class Program
                 case "1": AddCourse(); 
                 break;
 
-                case "2": AddPerson(new Student()); 
+                case "2": AddPerson(new Teacher()); 
                 break;
 
-                case "3": Course.ListCourses(school.Courses); 
+                case "3": AddPerson(new Student()); 
                 break;
 
-                case "4": ListStudents(); 
+                case "4": Course.ListCourses(school.Courses); 
+                break;
+
+                case "5": ListStudents(); 
                 break;
 
                 case "0": 
                 return;
 
-                default: Console.WriteLine("Välj 1, 2, 3, 4 eller 0."); 
+                default: Console.WriteLine("Välj 1, 2, 3, 4, 5 eller 0."); 
                 break;
             }
 
@@ -74,20 +78,31 @@ public class Program
         person.Address.PostalCode = ReadText("Postnummer: ");
         person.Address.City = ReadText("Ort: ");
 
+        // is typ kontroll...
+        if (person is Teacher teacher)
+        {
+            teacher.KnowledgeArea = ReadText("Kunskapsområde: ");
+        }
+
         school.People.Add(person);
         Console.WriteLine($"Person tillagd: {person}");
     }
 
     static void ListStudents()
     {
-        if (school.People.Count == 0)
-        {
-            Console.WriteLine("Inga studerande finns ännu.");
-        }
-        // endast studerande...
+        bool foundStudent = false;
         foreach (Person person in school.People)
         {
-            Console.WriteLine(person);
+            // visa endast studerande...
+            if (person is Student)
+            {
+                Console.WriteLine(person);
+                foundStudent = true;
+            }
+        }
+        if (!foundStudent)
+        {
+            Console.WriteLine("Inga studerande finns ännu.");
         }
     }
 
