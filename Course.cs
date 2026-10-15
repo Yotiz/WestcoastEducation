@@ -1,8 +1,8 @@
 namespace WestcoastEducation;
 public class Course
 {
-    public string CourseNumber { get; set; } = "";
-    public string Title { get; set; } = "";
+    public string CourseNumber { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
     public DateOnly StartDate { get; set; }
     public DateOnly EndDate { get; set; }
     public bool IsDistance { get; set; }

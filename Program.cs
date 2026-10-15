@@ -14,8 +14,9 @@ public class Program
             Console.WriteLine("2. Lägg till lärare");
             Console.WriteLine("3. Lägg till studerande");
             Console.WriteLine("4. Lägg till handledare/utbildningsledare");
-            Console.WriteLine("5. Lista kurser");
-            Console.WriteLine("6. Lista studerande");
+            Console.WriteLine("5. Lägg till administratör");
+            Console.WriteLine("6. Lista kurser");
+            Console.WriteLine("7. Lista studerande");
             Console.WriteLine("0. Avsluta");
 
             switch (ReadText("Välj: "))
@@ -32,16 +33,19 @@ public class Program
                 case "4": AddPerson(new EducationLeader()); 
                 break;
 
-                case "5": Course.ListCourses(school.Courses); 
+                case "5": AddPerson(new Administrator()); 
                 break;
 
-                case "6": ListStudents(); 
+                case "6": Course.ListCourses(school.Courses); 
+                break;
+
+                case "7": ListStudents(); 
                 break;
 
                 case "0": 
                 return;
 
-                default: Console.WriteLine("Välj 1, 2, 3, 4, 5, 6 eller 0."); 
+                default: Console.WriteLine("Välj mellan 0 och 7."); 
                 break;
             }
 
