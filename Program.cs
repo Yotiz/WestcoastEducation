@@ -2,7 +2,7 @@ namespace WestcoastEducation;
 
 public class Program
 {
-    static School school = new School();
+    static readonly School school = new();
 
     static void Main()
     {
@@ -21,32 +21,40 @@ public class Program
 
             switch (ReadText("Välj: "))
             {
-                case "1": AddCourse(); 
-                break;
+                case "1":
+                    AddCourse();
+                    break;
 
-                case "2": AddPerson(new Teacher()); 
-                break;
+                case "2":
+                    AddPerson(new Teacher());
+                    break;
 
-                case "3": AddPerson(new Student()); 
-                break;
+                case "3":
+                    AddPerson(new Student());
+                    break;
 
-                case "4": AddPerson(new EducationLeader()); 
-                break;
+                case "4":
+                    AddPerson(new EducationLeader());
+                    break;
 
-                case "5": AddPerson(new Administrator()); 
-                break;
+                case "5":
+                    AddPerson(new Administrator());
+                    break;
 
-                case "6": Course.ListCourses(school.Courses); 
-                break;
+                case "6":
+                    Course.ListCourses(school.Courses);
+                    break;
 
-                case "7": ListStudents(); 
-                break;
+                case "7":
+                    ListStudents();
+                    break;
 
-                case "0": 
-                return;
+                case "0":
+                    return;
 
-                default: Console.WriteLine("Välj mellan 0 och 7."); 
-                break;
+                default:
+                    Console.WriteLine("Välj mellan 0 och 7.");
+                    break;
             }
 
             // paus innan meny...
@@ -58,11 +66,14 @@ public class Program
     // skapa och lägg till kurser...
     static void AddCourse()
     {
-        Course course = new Course();
-        course.CourseNumber = ReadText("Kursnummer: ");
-        course.Title = ReadText("Titel: ");
-        course.StartDate = ReadDate("Startdatum (ÅÅÅÅ-MM-DD): ");
-        course.EndDate = ReadDate("Slutdatum (ÅÅÅÅ-MM-DD): ");
+        Course course = new()
+
+        {
+            CourseNumber = ReadText("Kursnummer: "),
+            Title = ReadText("Titel: "),
+            StartDate = ReadDate("Startdatum (ÅÅÅÅ-MM-DD): "),
+            EndDate = ReadDate("Slutdatum (ÅÅÅÅ-MM-DD): ")
+        };
 
         while (course.EndDate < course.StartDate)
         {

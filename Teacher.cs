@@ -5,7 +5,7 @@ public class Teacher : Person
     public string KnowledgeArea { get; set; } = string.Empty;
 
     // aggregation.. listan pekar på kurser som även finns utanför läraren...
-    public List<Course> ResponsibleCourses { get; } = new List<Course>();
+    public List<Course> ResponsibleCourses { get; } = [];
 
     public void AddCourse(Course course)
     {

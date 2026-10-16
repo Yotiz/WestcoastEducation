@@ -1,4 +1,5 @@
 namespace WestcoastEducation;
+
 public class Course
 {
     public string CourseNumber { get; set; } = string.Empty;
